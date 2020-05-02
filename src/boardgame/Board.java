@@ -42,7 +42,15 @@ public class Board {
 	}
 	
 	public Piece piece(Position position){
-		return pieces[position.getRow()][position.getColumn()];
+		return pieces[position.getRow()][position.getColumn()]; //the 'pieces matrix' was already set up (scroll up). And both '.getRow()' and '.getColumn()' are methods from the Position class accessible by the position variable that is being used locally here.
 	}
 	//Sobrecarga do mesmo método. Similar to constructors
+	
+	
+	
+	public void placePiece(Piece piece, Position position) {
+		pieces[position.getRow()][position.getColumn()] = piece; //Both '.getRow()' and '.getColumn()' are methods from the Position class accessible by the position variable that is being used locally here.
+		piece.position = position; //We're accessing directly the position attribute from the Piece class because it is set as protected.
+				
+	}
 }

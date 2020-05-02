@@ -8,7 +8,7 @@ public class Piece {
 	//Constructor
 	public Piece(Board board) {
 		this.board = board;
-		position = null; //by default the value of a Class object is null;
+		position = null; //by default the value of an object is null;
 	}
 	//We did not use the position attribute 'cause the actual position of a new piece will set as null
 
