@@ -63,6 +63,21 @@ public class Board {
 	}
 	
 	
+	public Piece removePiece(Position position) {
+		if (!positionExists(position)) { //This '!'(not) returns a boolean
+			throw new BoardException("Position not on the board");
+		}
+		
+		if(piece(position) == null) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux;
+	}
+	
+	
 	
 	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns; //private: only this class can use it. Check if the position is inside of the column and row of the board
