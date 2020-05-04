@@ -30,7 +30,7 @@ public class Rook extends ChessPiece { //TORRE
 		//above - The above moves
 			p.setValues(position.getRow() - 1, position.getColumn()); //"position.getRow() - 1" means we will start working with the row above the piece
 			
-			//This programming checks only the free limit (up/above) this piece can go - It will return false (stop) when a piece is there.
+			//This programming checks only the free positions limit (up/above) this piece can go - It will return false (stop) when a piece is there.
 			while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { //while the position 'p' exists and there's no piece in it, we make the position true and decrease one row.
 				mat[p.getRow()][p.getColumn()] = true;
 				p.setRow(p.getRow() - 1);
