@@ -84,18 +84,8 @@ public class King extends ChessPiece {
 			if (getBoard().positionExists(p) && canMove(p)) {
 				mat[p.getRow()][p.getColumn()] = true;				
 			}	
+	
 			
-			
-			/*
-			//after checking the free positions, this programming will check if the occupied position has an opponent piece (making capturing available).
-			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
-				mat[p.getRow()][p.getColumn()] = true;
-			}
-		*/
-		
-		
-		
-		
 		return mat;
 	}
 }
