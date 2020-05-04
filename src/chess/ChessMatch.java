@@ -50,6 +50,9 @@ public class ChessMatch {
 		if(!board.thereIsAPiece(position)) { //This '!'(not) returns a boolean
 			throw new ChessException("There is no piece on source position!");
 		}
+		if (!board.piece(position).isThereAnyPossibleMove()){ //if not. We're negating
+			throw new ChessException("There is no possible moves for the chosen piece");
+		}
 	}
 	
 		
