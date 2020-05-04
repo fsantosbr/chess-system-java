@@ -28,10 +28,8 @@ public class ChessPosition {
 		return row;
 	}
 	
-	
-	
-	//methods
-	
+		
+	//methods	
 	protected Position toPosition() {
 		return new Position(8 - row, column - 'a');
 	}

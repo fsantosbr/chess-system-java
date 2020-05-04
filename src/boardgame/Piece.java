@@ -42,7 +42,4 @@ public abstract class Piece {
 	} //This concrete method also depends of an abstract method which will only make sense when a subclass implement the abstract method 
 
 
-
 }
-
-
