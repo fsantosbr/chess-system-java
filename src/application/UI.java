@@ -65,7 +65,12 @@ public class UI {
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
 		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+		if (chessMatch.getCheck()) {
+			System.out.println("CHECK!");
+		} //It's not a rule to alert if someone is in ckeck or not
 	}
+	
+	
 	
 	public static void printBoard(ChessPiece[][] pieces) { //This method has an overload
 		for (int i = 0; i < pieces.length; i++) {

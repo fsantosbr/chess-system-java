@@ -2,6 +2,7 @@ package chess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import boardgame.Board;
 import boardgame.Piece;
@@ -14,6 +15,7 @@ public class ChessMatch {
 	private int turn;
 	private Color currentPlayer;
 	private Board board;
+	private boolean check;
 	
 	
 	private List<Piece> piecesOnTheBoard = new ArrayList<>();
@@ -25,6 +27,7 @@ public class ChessMatch {
 		board = new Board(8, 8);
 		turn = 1;
 		currentPlayer = Color.WHITE;
+		//check = false; a boolean property is false by default. This does not makes difference;
 		initialSetup();
 	}
 	
@@ -38,8 +41,12 @@ public class ChessMatch {
 		return currentPlayer;
 	}
 
-
-
+	
+	public boolean getCheck() {
+		return check;
+	}
+	
+	
 
 	//methods
 	public ChessPiece[][] getPieces(){
@@ -66,6 +73,13 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validadeTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		
+		if (testCheck(currentPlayer)) {
+			undoMove(source, target, capturedPiece);
+			throw new ChessException("You can't put yourself in check");
+		}
+		check = (testCheck(opponent(currentPlayer))) ? true : false;
+		
 		nextTurn();
 		return (ChessPiece)capturedPiece; //downcasting from superclass (Piece) to subclass (ChessPiece
 	}
@@ -81,6 +95,18 @@ public class ChessMatch {
 			capturedPieces.add(capturedPiece);			
 		}		
 		return capturedPiece;
+	}
+	
+	
+	private void undoMove(Position source, Position target, Piece capturedPiece) { //This method undone the movement made with the makeMove() method. Been used to avoid a player to put yourself in check.
+		Piece p = board.removePiece(target);
+		board.placePiece(p, source);
+		
+		if (capturedPiece != null) {
+			board.placePiece(capturedPiece, target);
+			capturedPieces.remove(capturedPiece);
+			piecesOnTheBoard.add(capturedPiece);
+		}
 	}
 	
 	
@@ -107,6 +133,36 @@ public class ChessMatch {
 	private void nextTurn() {
 		turn++;
 		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; //Ternary condition
+	}
+	
+	
+	private Color opponent(Color color) {
+		return (color == Color.WHITE) ? Color.BLACK : Color.WHITE; //ternary condition in order to get the opponent of the current player
+	}
+	
+	
+	private ChessPiece king(Color color) {
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+		for (Piece p : list) {
+			if (p instanceof King) { //instanceof is useful to check if an object is the same type of other before making a downcasting
+				return (ChessPiece)p;
+			}
+		}
+		throw new IllegalStateException("There's no " + color + " King on the board"); //This exception is from Java. We won't work with it because is meant to never happen cause in the game there are 2 colors only
+	}
+	
+	
+	
+	private boolean testCheck(Color color) { //this method will scan all pieces from the opponent and check if they have free movements in order to catch the King being tested here
+		Position kingPosition = king(color).getChessPosition().toPosition(); //getting the position of the King. king() method filters what pieces might be the King.
+		List<Piece> opponentPieces = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == opponent(color)).collect(Collectors.toList()); //this list lists all opponent pieces
+		for (Piece p : opponentPieces) {
+			boolean[][] mat = p.possibleMoves(); //this boolean matrix catches all possible moves from a piece (opponent) and save the position as "true"
+			if (mat[kingPosition.getRow()][kingPosition.getColumn()]) { //Here we are validating if the King position is one of the possible moves above, if true, the King might be captured by an opponent
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	

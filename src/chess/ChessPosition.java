@@ -35,7 +35,7 @@ public class ChessPosition {
 	}
 	
 	protected static ChessPosition fromPosition(Position position) {
-		return new ChessPosition((char)('a' - position.getColumn()), 8 - position.getRow()); //This method works to let the player sees only the row and column from the chess and not from our matrix number 
+		return new ChessPosition((char)('a' + position.getColumn()), 8 - position.getRow()); //This method works to let the player sees only the row and column from the chess and not from our matrix number 
 	}
 
 	
