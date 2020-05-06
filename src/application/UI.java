@@ -64,10 +64,18 @@ public class UI {
 		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Turn : " + chessMatch.getTurn());
-		System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
-		if (chessMatch.getCheck()) {
-			System.out.println("CHECK!");
-		} //It's not a rule to alert if someone is in ckeck or not
+		
+		if (!chessMatch.getCheckMate()) { //Testing if there's no check-mate to keep going
+		
+			System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
+			if (chessMatch.getCheck()) {
+				System.out.println("You're in CHECK."); //It's not a rule to alert if someone is in ckeck or not
+			} 
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Winner: " + chessMatch.getCurrentPlayer());
+		}
 	}
 	
 	

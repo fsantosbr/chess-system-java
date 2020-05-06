@@ -18,7 +18,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch();
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while (true) { //It makes the program run again and again until a false value appears
+		while (!chessMatch.getCheckMate()) { //While there's no check-mate, the program keep running
 			try {
 				UI.clearScreen();
 				UI.printMatch(chessMatch, captured);
@@ -53,6 +53,8 @@ public class Program {
 				sc.nextLine();
 			}
 		}
+		UI.clearScreen();
+		UI.printMatch(chessMatch, captured);
 	}
 
 }
