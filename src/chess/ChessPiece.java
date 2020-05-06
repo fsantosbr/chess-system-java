@@ -7,12 +7,14 @@ import boardgame.Position;
 public abstract class ChessPiece extends Piece {
 
 	private Color color;
+	private int moveCount;
 
 	
 	//constructor
 	public ChessPiece(Board board, Color color) {
 		super(board);
 		this.color = color;
+		// moveCount = 0; - integer numbers by default receive the value "0"
 	}
 
 	
@@ -21,8 +23,23 @@ public abstract class ChessPiece extends Piece {
 		return color;
 	}
 
+	public int getMoveCount() {
+		return moveCount;
+	}
+	
+		
 	
 	//methods
+	public void increaseMoveCount() {
+		moveCount++;
+	}
+	
+	
+	public void decreaseMoveCount() {
+		moveCount--;
+	}
+	
+	
 	public ChessPosition getChessPosition() {
 		return ChessPosition.fromPosition(position);
 	}
