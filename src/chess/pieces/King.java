@@ -39,7 +39,7 @@ public class King extends ChessPiece {
 			p.setValues(position.getRow() - 1, position.getColumn()); //"position.getRow() - 1" means we will work with the row above the piece
 			
 			//This programming checks only the free position (up/above) - It will return false (stop) when a piece is there.
-			if (getBoard().positionExists(p) && canMove(p)) { //if the position 'p' exists and there's no piece in it, we make the position true.
+			if (getBoard().positionExists(p) && canMove(p)) { //if the position 'p' exists, we make the position true.
 				mat[p.getRow()][p.getColumn()] = true;				
 			}
 						

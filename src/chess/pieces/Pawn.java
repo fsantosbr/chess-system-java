@@ -42,9 +42,16 @@ public class Pawn extends ChessPiece {
 			
 			// MOVE Diagonals to capture piece (Rule = The pawn can only move diagonal if it desires to capture a piece
 			p.setValues(position.getRow() - 1, position.getColumn() - 1);
-			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { //.
+			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) { //.NEW
+				
+				/* maybe the cod to avoid capture the King
+				ChessPiece a = (ChessPiece)getBoard().piece(p);
+				if (!(a instanceof King)) {
+					mat[p.getRow()][p.getColumn()] = true;
+				}*/
 				mat[p.getRow()][p.getColumn()] = true;
 			}
+			
 			p.setValues(position.getRow() - 1, position.getColumn() + 1);
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;

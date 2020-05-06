@@ -31,7 +31,7 @@ public class Rook extends ChessPiece { //TORRE
 			p.setValues(position.getRow() - 1, position.getColumn()); //"position.getRow() - 1" means we will start working with the row above the piece
 			
 			//This programming checks only the free positions limit (up/above) this piece can go - It will return false (stop) when a piece is there.
-			while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { //while the position 'p' exists and there's no piece in it, we make the position true and decrease one row.
+			while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) { //while the position 'p' exists and there's no piece in it, we make the position true and turn back the value of the row.
 				mat[p.getRow()][p.getColumn()] = true;
 				p.setRow(p.getRow() - 1);
 			}			
@@ -39,7 +39,6 @@ public class Rook extends ChessPiece { //TORRE
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
-			
 			
 		//left - The left moves
 			p.setValues(position.getRow(), position.getColumn() -1);
@@ -51,7 +50,6 @@ public class Rook extends ChessPiece { //TORRE
 				mat[p.getRow()][p.getColumn()] = true;
 			}
 		
-			
 		//left - The right moves
 			p.setValues(position.getRow(), position.getColumn() +1);
 			while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
@@ -62,7 +60,6 @@ public class Rook extends ChessPiece { //TORRE
 				mat[p.getRow()][p.getColumn()] = true;
 			}
 			
-			
 		//below - The below moves
 			p.setValues(position.getRow() + 1, position.getColumn());
 			while (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {
@@ -72,7 +69,6 @@ public class Rook extends ChessPiece { //TORRE
 			if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
-						
 		return mat;
 	}
 }
