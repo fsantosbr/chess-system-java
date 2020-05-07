@@ -19,7 +19,6 @@ public abstract class Piece {
 	}
 	
 	
-	
 	//methods
 	public abstract boolean[][] possibleMoves(); //abstract classes don't have a body, just the signature.
 	
@@ -40,6 +39,4 @@ public abstract class Piece {
 		}
 		return false;
 	} //This concrete method also depends of an abstract method which will only make sense when a subclass implement the abstract method 
-
-
 }

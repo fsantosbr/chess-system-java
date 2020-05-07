@@ -68,5 +68,4 @@ public class Bishop extends ChessPiece { //BISPOS
 		}
 		return mat;
 	}
-
 }

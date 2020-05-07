@@ -34,7 +34,6 @@ public class UI {
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 	
 	
-
 	// methods
 	
 	// https://stackoverflow.com/questions/2979383/java-clear-the-console
@@ -57,7 +56,6 @@ public class UI {
 	}
 	
 	
-	
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
@@ -66,7 +64,6 @@ public class UI {
 		System.out.println("Turn : " + chessMatch.getTurn());
 		
 		if (!chessMatch.getCheckMate()) { //Testing if there's no check-mate to keep going
-		
 			System.out.println("Waiting player: " + chessMatch.getCurrentPlayer());
 			if (chessMatch.getCheck()) {
 				System.out.println("You're in CHECK."); //It's not a rule to alert if someone is in ckeck or not
@@ -77,7 +74,6 @@ public class UI {
 			System.out.println("Winner: " + chessMatch.getCurrentPlayer());
 		}
 	}
-	
 	
 	
 	public static void printBoard(ChessPiece[][] pieces) { //This method has an overload
@@ -135,5 +131,4 @@ public class UI {
 		System.out.println(Arrays.toString(black.toArray())); //Default Java programming to print Array values
 		System.out.print(ANSI_RESET);
 	}
-	
 }

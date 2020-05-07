@@ -123,7 +123,6 @@ public class ChessMatch {
 		else {
 			enPassantVulnerable = null;
 		}
-		
 		return (ChessPiece)capturedPiece; //downcasting from superclass (Piece) to subclass (ChessPiece
 	}
 	
@@ -359,7 +358,7 @@ public class ChessMatch {
 		placeNewPiece('a', 2, new Pawn(board, Color.WHITE, this));
         placeNewPiece('b', 2, new Pawn(board, Color.WHITE, this));
         placeNewPiece('c', 2, new Pawn(board, Color.WHITE, this));
-        placeNewPiece('d', 4, new Pawn(board, Color.WHITE, this));
+        placeNewPiece('d', 2, new Pawn(board, Color.WHITE, this));
         placeNewPiece('e', 2, new Pawn(board, Color.WHITE, this));
         placeNewPiece('f', 2, new Pawn(board, Color.WHITE, this));
         placeNewPiece('g', 2, new Pawn(board, Color.WHITE, this));
